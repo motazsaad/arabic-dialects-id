@@ -1,5 +1,5 @@
 from langid.langid import LanguageIdentifier, model
-arabic_dialect_model4 = open('Padic_model_4_grams/model').read()
+arabic_dialect_model4 = open('Corpus_model_4_grams/model').read()
 identifier4 = LanguageIdentifier.from_modelstring(arabic_dialect_model4, norm_probs=True)
 
 print('#################################')
@@ -16,7 +16,7 @@ print(identifier4.classify("صعيبة برشة باهي"))
 print('#################################')
 print('test 5-grams model')
 
-arabic_dialect_model5 = open('Padic_model_5_grams/model').read()
+arabic_dialect_model5 = open('Corpus_model_5_grams/model').read()
 identifier5 = LanguageIdentifier.from_modelstring(arabic_dialect_model5, norm_probs=True)
 
 print(identifier5.classify("كيفك شو اخبارك انا منيح"))
@@ -28,11 +28,10 @@ print(identifier5.classify("من شان شو"))
 print(identifier5.classify("صعيبة برشة باهي"))
 # ('tn', )
 
-
 print('#################################')
 print('test 6 -grams model')
 
-arabic_dialect_model6 = open('Padic_model_6_grams/model').read()
+arabic_dialect_model6 = open('Corpus_model_6_grams/model').read()
 identifier6 = LanguageIdentifier.from_modelstring(arabic_dialect_model6, norm_probs=True)
 
 print(identifier5.classify("كيفك شو اخبارك انا منيح"))
@@ -48,7 +47,7 @@ print('#################################')
 print('test 7 -grams model')
 
 
-arabic_dialect_model7 = open('Padic_model_7_grams/model').read()
+arabic_dialect_model7 = open('Corpus_model_7_grams/model').read()
 identifier7 = LanguageIdentifier.from_modelstring(arabic_dialect_model7, norm_probs=True)
 
 print(identifier5.classify("كيفك شو اخبارك انا منيح"))

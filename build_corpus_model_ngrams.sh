@@ -14,8 +14,7 @@ python langid.py-master/langid/train/IGweight.py -lb Corpus_model_${n}_grams
 
 python langid.py-master/langid/train/LDfeatureselect.py Corpus_model_${n}_grams
 
-python langid.py-master/langid/train/scanner.py Corpus_model__${n}_grams
+python langid.py-master/langid/train/scanner.py Corpus_model_${n}_grams
 
 python langid.py-master/langid/train/NBtrain.py Corpus_model_${n}_grams
 
-#python langid.py -m Corpus_model_4_grams/model
