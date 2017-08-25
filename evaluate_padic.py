@@ -32,7 +32,7 @@ def evaluation(predictions, y_list, label):
     f_score = (2 * precision * recall) / (precision + recall)
     return accuracy, precision, recall, f_score
 
-test_dir = 'test_padic/conversation/' # how to specify the subdirectory
+test_dir = 'test_padic/conversation/*.test' # how to specify the subdirectory
 test_files = glob.glob(test_dir)
 
 for test in test_files:
