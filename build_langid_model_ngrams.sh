@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-n=5
+n=6
 rm -rf multidialect_model_${n}_grams
 
 python langid.py-master/langid/train/index.py train_multidialect_arabic/ -m multidialect_model_${n}_grams

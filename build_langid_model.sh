@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 rm -rf multidialect_model
 
 python langid.py-master/langid/train/index.py train_multidialect_arabic/ -m multidialect_model
