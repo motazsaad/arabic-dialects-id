@@ -1,10 +1,11 @@
+from __future__ import division
 import glob
 import os
 import numpy as np
 
 from langid.langid import LanguageIdentifier, model
 
-n = '4'
+n = '5'
 arabic_dialect_model = open('Train_Our_Corpus_model_'+n+'_grams/model').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
@@ -17,20 +18,25 @@ def evaluation(predictions, y_list, label):
     # print('true_labels.shape:', true_labels.shape)
     # print('len(predictions):', len(predictions))
     # print('len(y_list):', len(y_list))
-    # True Positive (TP): we predict a label of 1 (positive), and the true label is 1.
+    # True Positive (TP): we predict a label of 1 (positive), and the true label is 1. 815
     TP = np.sum(np.logical_and(pred_labels == 1, true_labels == 1))
     # True Negative (TN): we predict a label of 0 (negative), and the true label is 0.
     TN = np.sum(np.logical_and(pred_labels == 0, true_labels == 0))
     # False Positive (FP): we predict a label of 1 (positive), but the true label is 0.
     FP = np.sum(np.logical_and(pred_labels == 1, true_labels == 0))
-    # False Negative (FN): we predict a label of 0 (negative), but the true label is 1.
+    # False Negative (FN): we predict a label of 0 (negative), but the true label is 1.  1011
     FN = np.sum(np.logical_and(pred_labels == 0, true_labels == 1))
     print('TP: %i, FP: %i, TN: %i, FN: %i' % (TP, FP, TN, FN))
     precision = TP / (TP + FP)
+    #print('TP'+str(TP))
     recall = TP / (TP + FN)
     accuracy = (TP + TN) / (TP + TN + FP + FN)
+    #print(str(recall))
+    #print(str(accuracy))
     print('TP + TN + FP + FN = ', TP + TN + FP + FN)
     f_score = (2 * precision * recall) / (precision + recall)
+    #print(str(f_score))
+
     return accuracy, precision, recall, f_score
 
 test_dir = 'Test_Our_Corpus/Facebook/*.test' # how to specify the subdirectory
