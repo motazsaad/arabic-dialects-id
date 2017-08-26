@@ -20,7 +20,7 @@ Index a corpus that is stored in a directory hierarchy as follows:
     - ...
   - ...
 
-This produces 3 files: 
+This produces 3 files:
 * index: a list of paths, together with the langid and domainid as integers
 * lang_index: a list of languages in ascending order of id, with the count for each
 * domain_index: a list of domains in ascending order of id, with the count for each
@@ -77,7 +77,7 @@ class CorpusIndexer(object):
   def __init__(self, root, min_domain=MIN_DOMAIN, proportion=TRAIN_PROP, langs=None, domains=None, line_level=False):
     self.root = root
     self.min_domain = min_domain
-    self.proportion = proportion 
+    self.proportion = proportion
 
     if langs is None:
       self.lang_index = defaultdict(Enumerator())
@@ -125,7 +125,7 @@ class CorpusIndexer(object):
 
       # index the language and the domain
       try:
-        # TODO: If lang is pre-specified but not domain, we can end up 
+        # TODO: If lang is pre-specified but not domain, we can end up
         #       enumerating empty domains.
         domain_id = self.domain_index[domain]
         lang_id = self.lang_index[lang]
@@ -156,7 +156,7 @@ class CorpusIndexer(object):
 
         # index the language and the domain
         try:
-          # TODO: If lang is pre-specified but not domain, we can end up 
+          # TODO: If lang is pre-specified but not domain, we can end up
           #       enumerating empty domains.
           domain_id = self.domain_index[domain]
           lang_id = self.lang_index[lang]
@@ -172,9 +172,9 @@ class CorpusIndexer(object):
         self.items.append((domain_id,lang_id,docname,path))
 
   def prune_min_domain(self, min_domain):
-    # prune files for all languages that do not occur in at least min_domain 
-     
-    # Work out which languages to reject as they are not present in at least 
+    # prune files for all languages that do not occur in at least min_domain
+
+    # Work out which languages to reject as they are not present in at least
     # the required number of domains
     lang_domain_count = defaultdict(int)
     for langs in self.coverage_index.values():
@@ -186,7 +186,7 @@ class CorpusIndexer(object):
     if reject_langs:
       #print "reject (<{0} domains): {1}".format(min_domain, sorted(reject_langs))
       reject_ids = set(self.lang_index[l] for l in reject_langs)
-    
+
       new_lang_index = defaultdict(Enumerator())
       lm = dict()
       for k,v in self.lang_index.items():
@@ -213,7 +213,7 @@ class CorpusIndexer(object):
   @property
   def dist_domain(self):
     """
-    @returns A vector over frequency counts for each domain 
+    @returns A vector over frequency counts for each domain
     """
     retval = numpy.zeros((len(self.domain_index),), dtype='int')
     for d, l, n, p in self.items:
@@ -250,14 +250,14 @@ if __name__ == "__main__":
   index_path = os.path.join(model_dir, 'paths')
 
   # display paths
-  print "corpus path:", args.corpus
-  print "model path:", model_dir
-  print "writing langs to:", langs_path
-  print "writing domains to:", domains_path
-  print "writing index to:", index_path
+  print ("corpus path:", args.corpus)
+  print ("model path:", model_dir)
+  print ("writing langs to:", langs_path)
+  print ("writing domains to:", domains_path)
+  print ("writing index to:", index_path)
 
   if args.line:
-    print "indexing documents at the line level"
+    print ("indexing documents at the line level")
 
   indexer = CorpusIndexer(args.corpus, min_domain=args.min_domain, proportion=args.proportion,
                           langs = args.lang, domains = args.domain, line_level=args.line)
@@ -266,25 +266,25 @@ if __name__ == "__main__":
   lang_dist = indexer.dist_lang
   lang_index = indexer.lang_index
   lang_info = ' '.join(("{0}({1})".format(k, lang_dist[v]) for k,v in lang_index.items()))
-  print "langs({0}): {1}".format(len(lang_dist), lang_info)
+  print ("langs({0}): {1}".format(len(lang_dist), lang_info))
 
   domain_dist = indexer.dist_domain
   domain_index = indexer.domain_index
   domain_info = ' '.join(("{0}({1})".format(k, domain_dist[v]) for k,v in domain_index.items()))
-  print "domains({0}): {1}".format(len(domain_dist), domain_info)
+  print ("domains({0}): {1}".format(len(domain_dist), domain_info))
 
-  print "identified {0} documents".format(len(indexer.items))
+  print ("identified {0} documents".format(len(indexer.items)))
 
   # output the language index
   with open(langs_path,'w') as f:
     writer = csv.writer(f)
-    writer.writerows((l, lang_dist[lang_index[l]]) 
+    writer.writerows((l, lang_dist[lang_index[l]])
         for l in sorted(lang_index.keys(), key=lang_index.get))
 
   # output the domain index
   with open(domains_path,'w') as f:
     writer = csv.writer(f)
-    writer.writerows((d, domain_dist[domain_index[d]]) 
+    writer.writerows((d, domain_dist[domain_index[d]])
         for d in sorted(domain_index.keys(), key=domain_index.get))
 
   # output items found

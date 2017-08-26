@@ -108,8 +108,8 @@ if __name__ == "__main__":
       
 
   final_feature_set = reduce(set.union, map(set, features_per_lang.values()))
-  print 'selected %d features' % len(final_feature_set)
+  print ('selected %d features' % len(final_feature_set))
 
   write_features(sorted(final_feature_set), feature_path)
-  print 'wrote features to "%s"' % feature_path 
+  print ('wrote features to "%s"' % feature_path)
 
