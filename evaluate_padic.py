@@ -1,12 +1,13 @@
+from __future__ import division
 import glob
 import os
 import numpy as np
 
 from langid.langid import LanguageIdentifier, model
-n = '4'
+
+n = '5' 
 arabic_dialect_model = open('Train_Padic_model_'+n+'_grams/model').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
-
 
 def evaluation(predictions, y_list, label):
     # encoding
@@ -32,8 +33,9 @@ def evaluation(predictions, y_list, label):
     f_score = (2 * precision * recall) / (precision + recall)
     return accuracy, precision, recall, f_score
 
-test_dir = 'test_padic/conversation/*.test' # how to specify the subdirectory
+test_dir = 'test_padic/conversations/*.test' # how to specify the subdirectory
 test_files = glob.glob(test_dir)
+
 
 for test in test_files:
     base_name, ext = os.path.basename(test).split('.')
@@ -46,6 +48,7 @@ for test in test_files:
             prediction_list.append(dialect)
             y_list.append(base_name)
             #print(dialect, base_name)
+   
     print('evaluating ', base_name)
     accuracy, precision, recall, f_score = evaluation(prediction_list, y_list, base_name)
     print('accuracy: {}'.format(accuracy))

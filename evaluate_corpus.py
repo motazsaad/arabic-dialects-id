@@ -39,7 +39,7 @@ def evaluation(predictions, y_list, label):
 
     return accuracy, precision, recall, f_score
 
-test_dir = 'Test_Our_Corpus/Facebook/*.test' # how to specify the subdirectory
+test_dir = 'Test_Our_Corpus/twitter/*.test' # how to specify the subdirectory
 test_files = glob.glob(test_dir)
 
 for test in test_files:

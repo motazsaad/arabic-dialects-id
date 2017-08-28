@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-n=6
+n=4
 rm -rf Train_Our_Corpus_${n}_grams
 
 python2.7 langid.py-master/langid/train/index.py Train_Our_Corpus/ -m Train_Our_Corpus_model_${n}_grams
