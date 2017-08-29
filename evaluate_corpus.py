@@ -5,7 +5,7 @@ import numpy as np
 
 from langid.langid import LanguageIdentifier, model
 
-n = '6'
+n = '7'
 arabic_dialect_model = open('Train_Our_Corpus_model_'+n+'_grams/model').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
