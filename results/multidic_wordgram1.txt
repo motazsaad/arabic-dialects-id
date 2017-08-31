@@ -1,0 +1,57 @@
+/home/motaz/py3env/bin/python /home/motaz/PycharmProjects/arabic-dialects-id/word_gram_model.py
+dataset size: 6000
+2784 are selected from 53165
+generating features for documents ...
+train size 5400
+test size 600
+features are ready ...
+training ...
+training is done
+classifying ....
+599 of 600 classified
+accuracy: 0.705
+sy precision: 0.74
+sy recall: 0.61
+sy f-score: 0.67
+---------------------------------------
+ar precision: 0.85
+ar recall: 0.82
+ar f-score: 0.83
+---------------------------------------
+tn precision: 0.79
+tn recall: 0.81
+tn f-score: 0.80
+---------------------------------------
+pa precision: 0.58
+pa recall: 0.71
+pa f-score: 0.64
+---------------------------------------
+jo precision: 0.55
+jo recall: 0.70
+jo f-score: 0.61
+---------------------------------------
+eg precision: 0.84
+eg recall: 0.58
+eg f-score: 0.69
+---------------------------------------
+Most Informative Features
+           contains(الي) = True               sy : eg     =     77.0 : 1.0
+            contains(ان) = True               ar : sy     =     66.3 : 1.0
+           contains(أنا) = True               sy : pa     =     62.3 : 1.0
+           contains(هذا) = True               ar : jo     =     61.0 : 1.0
+            contains(رح) = True               sy : eg     =     59.7 : 1.0
+            contains(بس) = True               pa : tn     =     54.3 : 1.0
+            contains(مش) = True               eg : sy     =     52.3 : 1.0
+            contains(ده) = True               eg : ar     =     50.3 : 1.0
+           contains(انو) = True               jo : eg     =     43.7 : 1.0
+             contains(و) = True               tn : jo     =     42.8 : 1.0
+           contains(أنو) = True               sy : jo     =     40.3 : 1.0
+            contains(هي) = True               sy : ar     =     39.0 : 1.0
+          contains(اللي) = True               pa : jo     =     38.6 : 1.0
+            contains(عم) = True               sy : eg     =     34.3 : 1.0
+          contains(كتير) = True               sy : ar     =     33.4 : 1.0
+            contains(فى) = True               ar : pa     =     31.0 : 1.0
+          contains(الذى) = True               ar : eg     =     30.3 : 1.0
+          contains(اللى) = True               eg : pa     =     29.0 : 1.0
+            contains(لم) = True               ar : pa     =     27.0 : 1.0
+           contains(انا) = True               jo : sy     =     26.4 : 1.0

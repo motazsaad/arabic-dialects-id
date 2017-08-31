@@ -2,10 +2,9 @@ import nltk
 import os
 import glob
 import feature_extraction
-from nltk.metrics.scores import f_measure
+from nltk.metrics.scores import f_measure, precision, recall
 import collections
 import sys
-
 
 train = list()
 test = list()
@@ -27,10 +26,6 @@ for file in test_files:
     for line in lines:
         test.append((line.strip(), label))
 
-
-
-
-
 # print(train[0][0])
 # print(train[0][1])
 
@@ -39,10 +34,11 @@ for file in test_files:
 
 all_data = train + test
 indx = len(train)
-train_set, test_set = feature_extraction.prepare_train_test(dataset=all_data, selection='gt', max=3, split_indx=indx)
-#train_set, test_set = feature_extraction.prepare_train_test(dataset=all_data, selection='top', max=2000, split_indx=indx)
 
-#print(train_set[0])
+train_set, test_set = feature_extraction.prepare_train_test(dataset=all_data, order=2, selection='gt', max=3, split_indx=indx)
+# train_set, test_set = feature_extraction.prepare_train_test(dataset=all_data, selection='top', max=2000, split_indx=indx)
+
+# print(train_set[0])
 
 print('training ...')
 classifier = nltk.NaiveBayesClassifier.train(train_set)
@@ -61,8 +57,11 @@ for i, (feats, label) in enumerate(test_set):
 
 print('\naccuracy:', nltk.classify.accuracy(classifier, test_set))
 for label in labels:
-    print('{} f-score: {}'.format(label, f_measure(refsets[label], testsets[label])))
+    print('{0} precision: {1:0.2f}'.format(label, precision(refsets[label], testsets[label])))
+    print('{0} recall: {1:0.2f}'.format(label, recall(refsets[label], testsets[label])))
+    print('{0} f-score: {1:0.2f}'.format(label, f_measure(refsets[label], testsets[label])))
+    print('---------------------------------------')
 
 
-classifier.show_most_informative_features(20)
+classifier.show_most_informative_features(40)
 

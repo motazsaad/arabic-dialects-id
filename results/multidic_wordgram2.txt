@@ -1,0 +1,76 @@
+dataset size: 6000
+4112 are selected from 100349
+generating features for documents ...
+train size 5400
+test size 600
+features are ready ...
+training ...
+training is done
+classifying ....
+599 of 600 classified
+accuracy: 0.695
+sy precision: 0.76
+sy recall: 0.62
+sy f-score: 0.68
+---------------------------------------
+ar precision: 0.81
+ar recall: 0.83
+ar f-score: 0.82
+---------------------------------------
+tn precision: 0.66
+tn recall: 0.84
+tn f-score: 0.74
+---------------------------------------
+pa precision: 0.58
+pa recall: 0.68
+pa f-score: 0.62
+---------------------------------------
+jo precision: 0.63
+jo recall: 0.66
+jo f-score: 0.64
+---------------------------------------
+eg precision: 0.83
+eg recall: 0.54
+eg f-score: 0.65
+---------------------------------------
+Most Informative Features
+           contains(الي) = True               sy : eg     =     77.0 : 1.0
+            contains(ان) = True               ar : sy     =     66.3 : 1.0
+           contains(أنا) = True               sy : pa     =     62.3 : 1.0
+           contains(هذا) = True               ar : jo     =     61.0 : 1.0
+            contains(رح) = True               sy : eg     =     59.7 : 1.0
+            contains(بس) = True               pa : tn     =     54.3 : 1.0
+            contains(مش) = True               eg : sy     =     52.3 : 1.0
+            contains(ده) = True               eg : ar     =     50.3 : 1.0
+           contains(انو) = True               jo : eg     =     43.7 : 1.0
+             contains(و) = True               tn : jo     =     42.8 : 1.0
+           contains(أنو) = True               sy : jo     =     40.3 : 1.0
+            contains(هي) = True               sy : ar     =     39.0 : 1.0
+          contains(اللي) = True               pa : jo     =     38.6 : 1.0
+            contains(عم) = True               sy : eg     =     34.3 : 1.0
+          contains(كتير) = True               sy : ar     =     33.4 : 1.0
+            contains(فى) = True               ar : pa     =     31.0 : 1.0
+          contains(الذى) = True               ar : eg     =     30.3 : 1.0
+          contains(اللى) = True               eg : pa     =     29.0 : 1.0
+            contains(لم) = True               ar : pa     =     27.0 : 1.0
+           contains(انا) = True               jo : sy     =     26.4 : 1.0
+            contains(أن) = True               ar : tn     =     25.8 : 1.0
+          contains(الكل) = True               tn : ar     =     24.3 : 1.0
+           contains(اما) = True               tn : eg     =     24.2 : 1.0
+           contains(موش) = True               tn : eg     =     23.7 : 1.0
+            contains(شي) = True               sy : eg     =     23.0 : 1.0
+           contains(هاي) = True               jo : tn     =     23.0 : 1.0
+           contains(كده) = True               eg : pa     =     21.0 : 1.0
+           contains(ليس) = True               ar : sy     =     20.3 : 1.0
+         contains(و_لكن) = True               ar : eg     =     20.3 : 1.0
+            contains(في) = True               pa : ar     =     19.8 : 1.0
+           contains(جدا) = True               ar : tn     =     19.7 : 1.0
+          contains(خاطر) = True               tn : eg     =     19.7 : 1.0
+           contains(مره) = True               pa : sy     =     19.7 : 1.0
+           contains(الى) = True               ar : tn     =     19.7 : 1.0
+           contains(لكن) = True               ar : tn     =     19.4 : 1.0
+           contains(فما) = True               tn : pa     =     18.3 : 1.0
+          contains(التى) = True               ar : eg     =     17.7 : 1.0
+           contains(ايه) = True               eg : pa     =     17.7 : 1.0
+            contains(أي) = True               sy : jo     =     17.7 : 1.0
+           contains(كيف) = True               tn : eg     =     17.0 : 1.0

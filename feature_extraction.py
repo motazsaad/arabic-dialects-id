@@ -1,5 +1,7 @@
 import nltk
 import itertools
+import process_arabic
+from nltk.util import ngrams
 
 
 def document_features(document, selected_features):
@@ -10,12 +12,28 @@ def document_features(document, selected_features):
     return features
 
 
-def prepare_text(text):
-    return text.split()
+def generate_ngrams(word_list, n=2):
+    mygrams = []
+    unigrams = [word for word in word_list]
+    for i in range(2,n+1):
+        mygrams += ngrams(word_list, i)
+    grams = ['_'.join(g) for g in mygrams]
+    return unigrams + grams
 
 
-def prepare_train_test(dataset, selection, max, split_indx):
-    dataset = [(prepare_text(doc), label) for doc, label in dataset]
+def prepare_text(text, order):
+    text = process_arabic.remove_diacritics(text)
+    text = process_arabic.remove_punctuation(text)
+    text = text.split()
+    if order == 1:
+        return text
+    else:
+        text = generate_ngrams(text, order)
+        return text
+
+
+def prepare_train_test(dataset, order, selection, max, split_indx):
+    dataset = [(prepare_text(doc, order), label) for doc, label in dataset]
     print("dataset size: {}".format(len(dataset)))
 
     all_features = list(itertools.chain.from_iterable(doc for doc, label in dataset))
@@ -50,33 +68,3 @@ def prepare_train_test(dataset, selection, max, split_indx):
 
 
 
-
-###################################################################################
-# generates n-gram (g = num of grams)
-# for example, if g=3, then the fuction will generate unigrams, bigrams, and tri-grams from the text.
-def generate_ngrams(word_list, g):
-    mygrams = []
-    unigrams = [word for word in word_list]
-    mygrams += unigrams
-    for i in range(2, g + 1): mygrams += ngrams(word_list, i)
-    return mygrams
-
-
-###################################################################################
-
-# generate n-gram features in the form (n-gram, True), i.e., binary feature. In other words, the n-gram exists
-def generate_features(mygrams):
-    feats = dict([(word, True) for word in mygrams])
-    return feats
-
-
-###################################################################################
-
-# generate features for a doc from selected features grams (selected from a corpus)
-# taks 2 parameters:
-# 1. document feature grams
-# 2. corpus selected feature grams
-def build_features(doc_feat_grams, corpus_feat_grams):
-    doc_grams = set(doc_feat_grams)
-    feats = dict([(word, True) for word in doc_grams if word in corpus_feat_grams])
-    return feats
