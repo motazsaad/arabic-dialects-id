@@ -1,4 +1,3 @@
-from __future__ import division
 import glob
 import os
 import eval_metrics
