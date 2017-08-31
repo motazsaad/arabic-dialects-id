@@ -61,7 +61,7 @@ for i, (feats, label) in enumerate(test_set):
 
 print('\naccuracy:', nltk.classify.accuracy(classifier, test_set))
 for label in labels:
-    print('{} f-score: {}'.format(label), f_measure(refsets[label], testsets[label]))
+    print('{} f-score: {}'.format(label, f_measure(refsets[label], testsets[label])))
 
 
 classifier.show_most_informative_features(20)
