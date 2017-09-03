@@ -4,10 +4,10 @@ import eval_metrics
 from langid.langid import LanguageIdentifier, model
 
 n = '5'
-arabic_dialect_model = open('Train_Our_Corpus_model_'+n+'_grams/model').read()
+arabic_dialect_model = open('Train_Padic_model_'+n+'_grams/model').read()#('Train_Our_Corpus_model_'+n+'_grams/model').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
-test_dir = 'Test_Our_Corpus/twitter/*.test' # how to specify the subdirectory
+test_dir = 'test_padic/conversation/*.test'#'Test_Our_Corpus/twitter/*.test' # how to specify the subdirectory
 test_files = glob.glob(test_dir)
 
 for test in test_files:

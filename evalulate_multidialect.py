@@ -3,7 +3,8 @@ import os
 import eval_metrics
 
 from langid.langid import LanguageIdentifier, model
-arabic_dialect_model = open('multidialect_model/model').read()
+n = '7'
+arabic_dialect_model = open('built_models/multidialect_model_'+n+'g').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
 test_dir = 'test_multidialect_arabic/*.test'

@@ -1,17 +1,14 @@
-from __future__ import division
 import glob
 import os
 import eval_metrics
-
 from langid.langid import LanguageIdentifier, model
 
-n = '5' 
-arabic_dialect_model = open('Train_Padic_model_'+n+'_grams/model').read()
+n = '7'
+arabic_dialect_model = open('Train_Padic_model_'+n+'_grams/model').read()#('Train_Our_Corpus_model_'+n+'_grams/model').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
-test_dir = 'test_padic/conversations/*.test' # how to specify the subdirectory
+test_dir = 'test_padic/conversation/*.test'#'Test_Our_Corpus/twitter/*.test' # how to specify the subdirectory
 test_files = glob.glob(test_dir)
-
 
 for test in test_files:
     base_name, ext = os.path.basename(test).split('.')
@@ -24,7 +21,6 @@ for test in test_files:
             prediction_list.append(dialect)
             y_list.append(base_name)
             #print(dialect, base_name)
-   
     print('evaluating ', base_name)
     accuracy, precision, recall, f_score = eval_metrics.evaluate_acc_PRF(prediction_list, y_list, base_name)
     print('accuracy: {}'.format(accuracy))
