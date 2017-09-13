@@ -16,30 +16,37 @@ def document_features(document, selected_features=None):
     return features
 
 
-def generate_ngrams(word_list, n=2):
+def generate_ngrams(token_list, n, level):
     mygrams = []
-    unigrams = [word for word in word_list]
+    unigrams = [token for token in token_list]
     for i in range(2,n+1):
-        mygrams += ngrams(word_list, i)
-    grams = ['_'.join(g) for g in mygrams]
+        mygrams += ngrams(token_list, i)
+    if level == 'word':
+        grams = [' '.join(g) for g in mygrams]
+    elif level == 'char':
+        grams = [''.join(g) for g in mygrams]
     return unigrams + grams
 
 
-def prepare_text(text, order):
+def prepare_text(text, order, level):
     text = process_arabic.remove_diacritics(text)
     text = process_arabic.remove_punctuation(text)
-    words = text.split()
+    if level == 'word':
+        tokens = text.split()
+    elif level == 'char':
+        tokens = list(text)
     if order == 1:
-        return words
+        return tokens
     else:
-        n_grams = generate_ngrams(words, order)
+        n_grams = generate_ngrams(tokens, order, level)
         return n_grams
 
 
-def prepare_train_test(dataset, order, selection, max, split_indx):
-    dataset = [(prepare_text(doc, order), label) for doc, label in dataset]
+def prepare_train_test(dataset, order, selection, max, split_indx, level):
+    dataset = [(prepare_text(doc, order, level), label) for doc, label in dataset]
     print("dataset size: {}".format(len(dataset)))
-
+    print('model order (n=): {}'.format(order))
+    print('feature level: {}'.format(level))
     all_features = list(itertools.chain.from_iterable(doc for doc, label in dataset))
     #print('sample of all features:\n{}'.format(all_features[:3]))
 
@@ -63,10 +70,11 @@ def prepare_train_test(dataset, order, selection, max, split_indx):
     return train_set, test_set
 
 
-def prepare_train_data(dataset, order, selection, max):
-    dataset = [(prepare_text(doc, order), label) for doc, label in dataset]
+def prepare_train_data(dataset, order, selection, max, level):
+    dataset = [(prepare_text(doc, order, level), label) for doc, label in dataset]
     print("dataset size: {}".format(len(dataset)))
     print('model order (n=): {}'.format(order))
+    print('feature level: {}'.format(level))
 
     all_features = list(itertools.chain.from_iterable(doc for doc, label in dataset))
     all_features_len = len(all_features)
@@ -84,10 +92,11 @@ def prepare_train_data(dataset, order, selection, max):
     return feature_sets
 
 
-def prepare_test_data(dataset, order):
-    dataset = [(prepare_text(doc, order), label) for doc, label in dataset]
+def prepare_test_data(dataset, order, level):
+    dataset = [(prepare_text(doc, order, level), label) for doc, label in dataset]
     print("dataset size: {}".format(len(dataset)))
     print('model order (n=): {}'.format(order))
+    print('feature level: {}'.format(level))
     print('generating features for documents ...')
     feature_sets = [(document_features(d), c) for d, c in dataset]
     print('features are ready ...')
