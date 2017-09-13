@@ -21,7 +21,7 @@ import numpy as np
 
 
 
-categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med']
+#categories = ['alt.atheism', 'soc.religion.christian','comp.graphics', 'sci.med']
 #twenty_train = load_files('/Users/xabuka/Desktop/work/scikit/train/',encoding='utf-8')
  #fetch_20newsgroups(subset='train', categories=categories, shuffle=True, random_state=42)
 twenty_train = load_files('Train_Filter_Corpus/train/', encoding = 'utf-8',decode_error='ignore')
