@@ -61,7 +61,7 @@ def test_model(test_dir, model_name, n_gram, level):
     classifier.show_most_informative_features(40)
 
 
-# python test_gram_model.py -t test_multidialect_arabic -o 1 -m word_gram_models/multidialect_model_1g -l char
+# python test_gram_model.py -t test_multidialect_arabic -o 4 -m char_gram_models/multidialect_model_4g -l char
 # python test_gram_model.py -t test_multidialect_arabic -o 1 -m word_gram_models/multidialect_model_1g -l word
 
 if __name__ == '__main__':
