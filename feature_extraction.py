@@ -24,12 +24,12 @@ def generate_ngrams(word_list, n=2):
 def prepare_text(text, order):
     text = process_arabic.remove_diacritics(text)
     text = process_arabic.remove_punctuation(text)
-    text = text.split()
+    words = text.split()
     if order == 1:
-        return text
+        return words
     else:
-        text = generate_ngrams(text, order)
-        return text
+        n_grams = generate_ngrams(words, order)
+        return n_grams
 
 
 def prepare_train_test(dataset, order, selection, max, split_indx):
@@ -59,7 +59,25 @@ def prepare_train_test(dataset, order, selection, max, split_indx):
     return train_set, test_set
 
 
+def prepare_data(dataset, order, selection, max):
+    dataset = [(prepare_text(doc, order), label) for doc, label in dataset]
+    print("dataset size: {}".format(len(dataset)))
+    print('model order (n=): {}'.format(order))
 
+    all_features = list(itertools.chain.from_iterable(doc for doc, label in dataset))
+    all_features_len = len(all_features)
+    all_features_freq = nltk.FreqDist(all_features)
+    del all_features
+    if selection == 'top':
+        selected_features = list(all_features_freq)[:max]
+    elif selection == 'gt':
+        selected_features = list([word for word, freq in all_features_freq.items() if freq > max])
+    print("{} are selected from {}".format(len(selected_features), all_features_len))
+    del all_features_freq
+    print('generating features for documents ...')
+    feature_sets = [(document_features(d, selected_features), c) for d, c in dataset]
+    print('features are ready ...')
+    return feature_sets
 
 
 
