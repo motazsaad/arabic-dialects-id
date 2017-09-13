@@ -28,7 +28,7 @@ def build_model(train_directory, ngram_order, cut_freq_max, model_file_name):
             text = open(file).read().strip()
             train.append((text, label))
 
-    train_set = feature_extraction.prepare_data(dataset=train, order=ngram_order, selection='gt', max=cut_freq_max)
+    train_set = feature_extraction.prepare_train_data(dataset=train, order=ngram_order, selection='gt', max=cut_freq_max)
     # train_set, test_set = feature_extraction.prepare_train_test(dataset=all_data, selection='top', max=2000,
     # split_indx=indx)
 
@@ -40,8 +40,8 @@ def build_model(train_directory, ngram_order, cut_freq_max, model_file_name):
     print('model written successfully!')
 
 
-# python build_word_gram_model.py -t Train_Filter_Corpus/ -o 2 -c 7 -m word_gram_models/Train_Filter_model_2g
-# python build_word_gram_model.py -t Train_Filter_Corpus/ -o 1 -c 7 -m word_gram_models/Train_Filter_model_1g
+# python build_word_gram_model.py -t Train_Filter_Corpus/train/ -o 2 -c 10 -m word_gram_models/Train_Filter_model_2g
+# python build_word_gram_model.py -t Train_Filter_Corpus/train/ -o 1 -c 10 -m word_gram_models/Train_Filter_model_1g
 # python build_word_gram_model.py -t train_multidialect_arabic/conversations/ -o 2 -c 3 -m word_gram_models/multidialect_model_2g
 # python build_word_gram_model.py -t train_multidialect_arabic/conversations/ -o 1 -c 3 -m word_gram_models/multidialect_model_1g
 # python build_word_gram_model.py -t Train_Padic/conversation/ -o 2 -c 5 -m word_gram_models/padic_model_2g

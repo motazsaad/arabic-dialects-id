@@ -4,11 +4,15 @@ import process_arabic
 from nltk.util import ngrams
 
 
-def document_features(document, selected_features):
+def document_features(document, selected_features=None):
     document_words = set(document)
     features = {}
-    for word in selected_features:
-        features['contains({})'.format(word)] = (word in document_words)
+    if selected_features:
+        for feature in selected_features:
+            features['contains({})'.format(feature)] = (feature in document_words)
+    else:
+        for word in document_words:
+            features['contains({})'.format(word)] = True
     return features
 
 
@@ -59,7 +63,7 @@ def prepare_train_test(dataset, order, selection, max, split_indx):
     return train_set, test_set
 
 
-def prepare_data(dataset, order, selection, max):
+def prepare_train_data(dataset, order, selection, max):
     dataset = [(prepare_text(doc, order), label) for doc, label in dataset]
     print("dataset size: {}".format(len(dataset)))
     print('model order (n=): {}'.format(order))
@@ -79,6 +83,15 @@ def prepare_data(dataset, order, selection, max):
     print('features are ready ...')
     return feature_sets
 
+
+def prepare_test_data(dataset, order):
+    dataset = [(prepare_text(doc, order), label) for doc, label in dataset]
+    print("dataset size: {}".format(len(dataset)))
+    print('model order (n=): {}'.format(order))
+    print('generating features for documents ...')
+    feature_sets = [(document_features(d), c) for d, c in dataset]
+    print('features are ready ...')
+    return feature_sets
 
 
 
