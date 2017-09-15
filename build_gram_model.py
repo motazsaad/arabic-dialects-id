@@ -27,7 +27,7 @@ def build_model(train_directory, ngram_order, cut_freq_max, model_file_name, lev
     for label in labels:
         files = glob.glob(train_dir + label + "/*")
         for file in files:
-            text = open(file).read().strip()
+            text = open(file, encoding='utf-8', errors='ignore').read().strip()
             train.append((text, label))
 
     train_set = feature_extraction.prepare_train_data(dataset=train, order=ngram_order,
