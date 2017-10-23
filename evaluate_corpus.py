@@ -28,6 +28,5 @@ for test in test_files:
     print(accuracy)
     print('precision: {}'.format(precision))
     print('recall: {}'.format(recall))
-    print('f-score: {}'.format(f_scorsvm.py
-grams.pye))
+    print('f-score: {}'.format(f_scorsvm.pygrams.pye))
     print('-------------------------------------')
