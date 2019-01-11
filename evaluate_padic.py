@@ -2,9 +2,16 @@ import glob
 import os
 import eval_metrics
 from langid.langid import LanguageIdentifier, model
+import argparse
 
-n = '7'
-arabic_dialect_model = open('Train_Padic_model_'+n+'_grams/model').read()#('Train_Our_Corpus_model_'+n+'_grams/model').read()
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--number_of_grams", "-n", type=str, help='enter number of grams', required=True)
+
+args = parser.parse_args()
+#n = '2'
+arabic_dialect_model = open('Train_Padic_model_'+args.number_of_grams+'_grams/model').read()#('Train_Our_Corpus_model_'+n+'_grams/model').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
 test_dir = 'test_padic/conversation/*.test'#'Test_Our_Corpus/twitter/*.test' # how to specify the subdirectory

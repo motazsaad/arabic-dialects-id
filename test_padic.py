@@ -1,4 +1,5 @@
 from langid.langid import LanguageIdentifier, model
+
 arabic_dialect_model4 = open('Padic_model_4_grams/model').read()
 identifier4 = LanguageIdentifier.from_modelstring(arabic_dialect_model4, norm_probs=True)
 

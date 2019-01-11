@@ -2,13 +2,19 @@ import glob
 import os
 import eval_metrics
 from langid.langid import LanguageIdentifier, model
-#from future import division
+import argparse
 
-n = '7'
-arabic_dialect_model = open('Train_JSL_model_'+n+'_grams/model').read()#('Train_Our_Corpus_model_'+n+'_grams/model').read()
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--number_of_grams", "-n", type=str, help='enter number of grams', required=True)
+
+args = parser.parse_args()
+#n = '7'
+arabic_dialect_model = open('Train_JSL_model_'+args.number_of_grams+'_grams/model').read()#('Train_Our_Corpus_model_'+n+'_grams/model').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
-test_dir = 'Filter_Pure/test/*.test'#'Test_Our_Corpus/twitter/*.test' # how to specify the subdirectory
+test_dir = 'Test_Pure_corpus/*.test'#'Test_Our_Corpus/twitter/*.test' # how to specify the subdirectory
 test_files = glob.glob(test_dir)
 
 for test in test_files:
@@ -28,5 +34,5 @@ for test in test_files:
     print(accuracy)
     print('precision: {}'.format(precision))
     print('recall: {}'.format(recall))
-    print('f-score: {}'.format(f_scorsvm.pygrams.pye))
+    #print('f-score: {}'.format(f_scorsvm.pygrams.pye))
     print('-------------------------------------')

@@ -3,8 +3,17 @@ import os
 import eval_metrics
 
 from langid.langid import LanguageIdentifier, model
-n = '7'
-arabic_dialect_model = open('built_models/multidialect_model_'+n+'g').read()
+import argparse
+
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--number_of_grams", "-n", type=str, help='enter number of grams', required=True)
+
+args = parser.parse_args()
+
+#n = '7'
+arabic_dialect_model = open('built_models/multidialect_model_'+args.number_of_grams+'g').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
 test_dir = 'test_multidialect_arabic/*.test'
