@@ -11,10 +11,10 @@ parser.add_argument("--number_of_grams", "-n", type=str, help='enter number of g
 
 args = parser.parse_args()
 #n = '2'
-arabic_dialect_model = open('Train_Padic_model_'+args.number_of_grams+'_grams/model').read()#('Train_Our_Corpus_model_'+n+'_grams/model').read()
+arabic_dialect_model = open('Train_Padic_model_'+args.number_of_grams+'_grams/model').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
-test_dir = 'test_padic/conversation/*.test'#'Test_Our_Corpus/twitter/*.test' # how to specify the subdirectory
+test_dir = 'test_padic/conversation/*.test'
 test_files = glob.glob(test_dir)
 
 for test in test_files:

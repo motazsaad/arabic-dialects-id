@@ -16,10 +16,10 @@ bash build_lang_id_model.sh ${py} Train_Padic 5
 
 
 # multidialect_arabic corpus (Nizar corpus)
-#bash build_lang_id_model.sh ${py} train_multidialect_arabic 4
-#bash build_lang_id_model.sh ${py} train_multidialect_arabic 5
+bash build_lang_id_model.sh ${py} train_multidialect_arabic 4
+bash build_lang_id_model.sh ${py} train_multidialect_arabic 5
 
 
 # our corpus
-#bash build_lang_id_model.sh ${py} Train_Our_Corpus 4
-#bash build_lang_id_model.sh ${py} Train_Our_Corpus 5
+bash build_lang_id_model.sh ${py} Train_Pure_corpus 4
+bash build_lang_id_model.sh ${py} Train_Pure_corpus 5

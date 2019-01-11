@@ -102,7 +102,7 @@ print(metrics.classification_report(twenty_test.target, predicted,
 print(metrics.confusion_matrix(twenty_test.target, predicted, labels=[0, 1, 2,3]))
 #  'precision', 'predicted', average, warn_for)
 
-print('\t8 document classification')
+print('\t8 document classification testing')
 
 docs_new = ['انا مش عارف شو الموقف حاليا ', 'كل صالونات لبنان تتحدث عن رائحه فساد ', 'بعرفش هيا هيك شو اعملك ']
 #X_new_counts = count_vect.transform(docs_new)

@@ -1,0 +1,63 @@
+
+The corpora we worked on are 
+1. Train_Padic + test_padic
+2. train_multidialect_arabic + test_multidialect
+3. Train_Pure_corpus + test_Pure_corpus
+I have done many expiremetns using this code trying the full_data (4 categoris), minimizing it to tri-classification and binary-classification task. 
+
+the project consisting of three part:
+1. buildig ID system by langid.py which only supprts n-grams on word level (build_lang_id_model.sh)
+2. building langauge model in character level (build_gram_model.py)	
+3. using Sklearn to try NB and SDG classifiers. 
+
+First Part: 
+
+1. to build a language model you have to install langid.py library
+2. run the command file to build a model using padic corpus with 4 word grams
+	bash build_lang_id_model.sh #python_version #Corpus_name #Word_grams
+	ex: bash build_lang_id_model.sh python2.7 Train_Padic 4
+		bash build_lang_id_model.sh python2.7 train_multidialect_arabic 4
+		bash build_lang_id_model.sh python2.7 Train_Pure_corpus 4
+
+		#hint : insted you can run file commands.sh which has the commands to build 4 and 5 grams model for all the corpora.
+
+	2.1 then the code will build the model and store in  a folder called (name_of_the_corpus_model_numberOFgrams) like Train_Padic_model_4_grams
+
+3. evaluate the model by
+	python evaluate_padic.py -n 4
+	python evaluate_multidialect -n 4
+	python evaluate_corpus -n 4
+
+4. to test the models usind this commands
+	python test_corpus.py -n 4  # you can change the number of n according to n-grams
+	python test_padic.py 
+	python test_multidialect.py 
+
+	note : 
+	1. the last two testing files , test model from 3grams to 7 grams (so you have to build all of these models firstly) otherwise comment the codes to avoid raising an error. 
+	2. make sure that the name of the model files inside the testing files are correct as your building models. 
+
+
+
+
+
+
+
+
+python grams_course.py
+
+contains  two classifiers (NB and SDG)
+
+1. for every language inside the train folder split the language.txt into multiple files each with one sentence using the foloowing command, and don't forget to remove the original file to avoid reading it by the code again.
+
+	split -l 1 -a 5 sy.txt ara_
+	# then remove sy.txt from the folder and keep the other files. 
+
+2. run the file grams. python 
+# here in this file you can update the analyzer from char (grams on character level)
+to word (grams on word level)
+# you can also change the lower and upper boundaries of n-grams.
+
+
+
+all these expiremetns have been written down in the paper. 

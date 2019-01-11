@@ -13,7 +13,7 @@ parser.add_argument("--number_of_grams", "-n", type=str, help='enter number of g
 args = parser.parse_args()
 
 #n = '7'
-arabic_dialect_model = open('built_models/multidialect_model_'+args.number_of_grams+'g').read()
+arabic_dialect_model = open('train_multidialect_arabic_model_'+args.number_of_grams+'_grams/model').read()
 identifier = LanguageIdentifier.from_modelstring(arabic_dialect_model, norm_probs=True)
 
 test_dir = 'test_multidialect_arabic/*.test'
