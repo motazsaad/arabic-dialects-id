@@ -43,7 +43,7 @@ First Part:
 
 
 
-
+Part 2:
 python grams_course.py
 
 contains  two classifiers (NB and SDG)
